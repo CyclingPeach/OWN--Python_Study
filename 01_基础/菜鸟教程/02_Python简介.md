@@ -11,3 +11,8 @@ Python 的设计具有很强的可读性，相比其他语言经常使用英文�
 - Python 是面向对象语言: 这意味着Python支持面向对象的风格或代码封装在对象的编程技术。
 
 - Python 是初学者的语言：Python 对初级程序员而言，是一种伟大的语言，它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏。
+![图 1](../../images/e2a3fa8b990488d7b43a4ca0211eaeebffc77c227539b30c0e7e91651f4a7996.png)  
+
+
+![图 3](../../images/0cc9f660b3ded09e363f4a18f58f7f4c5c562617a5cd5fc3db1ca8897ee6a31a.png)  
+
