@@ -11,7 +11,6 @@ class StockSpider(scrapy.Spider):
     def parse(self, response):
         page = int(response.url.split("_")[-1].split(".")[0])
         item_nodes = response.css('#datalist tr')
-
         for item_node in item_nodes:
             item_loader = StockstarItemLoader(item=StockstarItem(), selector=item_node)
             item_loader.add_css("code", "td:nth-child(1) a::text")

@@ -1,0 +1,15 @@
+import requests
+import time
+#设置请求表头
+headers={
+'accept':'application/json, text/plain, */*',
+'cookie':'UM_distinctid=16dd0129c82177-0894e7e3ed104b-46531b29-1fa400-16dd0129c83507; grwng_uid=2a2b379c-16cd-43de-ac5a-34934134d2ec; CNZZDATA1275318158=608434246-1571153429-https%253A%252F%252Fm.lizhiweike.com%252F%7C1571153429; gr_user_id=b3ee96cd-eed4-405c-bc32-ad5b2735ab8f; CNZZDATA1259942212=811616743-1571149353-%7C1571149353; 944da7a11410b7a8_gr_session_id_f0a3bcc7-38ae-4bde-a777-f134c572b8c3=true; 944da7a11410b7a8_gr_session_id=f0a3bcc7-38ae-4bde-a777-f134c572b8c3',
+'referer':'https://m.lizhiweike.com/indexpage/search-result?keyword=%E8%8B%B1%E8%AF%AD',
+'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
+}
+#通过for循环采集多页数据
+for i in range(0,10):
+    url='https://m.lizhiweike.com/api/board/search?version=a&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQWNjb3VudFRva2VuIiwiaWQiOjI4MTM0NzI4LCJuaWNrbmFtZSI6IumbtuS4gCIsInNleCI6IjEiLCJzdGF0dXMiOiJub3JtYWwiLCJzdWJzY3JpYmVkIjoxLCJyb2xlIjoibGVjdHVyZXIiLCJpYXQiOjE1NzExNTQwNzgsImV4cCI6MTU3MTE3NTY3OH0._awobmbKfXD-jNzegB6xbOyWEYyp_s_nmrrqQSEYSJ8&q=%E8%8B%B1%E8%AF%AD&type=liveroom&offset={}&limit=10'.format(i*10)#通过控制URL中的offset参数实现翻页效果，offset参数算法为页码*10
+    print(requests.get(url,headers=headers).text)
+#每次访问服务器后等待2秒钟，避免过于频繁地访问。
+		time.sleep(2)
