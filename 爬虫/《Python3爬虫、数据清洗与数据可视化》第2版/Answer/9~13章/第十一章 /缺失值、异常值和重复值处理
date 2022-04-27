@@ -1,0 +1,35 @@
+import pandas as pd
+df= pd.read_csv("D:/hz_weather.csv")
+df1=pd.pivot_table(df, values=['最高气温'], index=['天气'], columns=['风向'])
+df1.isnull()
+df1.dropna(axis=0)
+df1.dropna(axis=1)
+df1.fillna('missing')
+df1.fillna(method='pad')
+df1.fillna(method='bfill',limit=1)  
+df1.fillna(df1.mean())
+
+%matplotlib inline
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+df=pd.read_csv("D:/hz_weather.csv")
+fig, ax = plt.subplots(1, 1, figsize=(8, 5))
+ax.hist(df["最低气温"],bins=20)
+d = df["最低气温"]
+zscore = (d - d.mean())/d.std()
+df['isOutlier'] = zscore.abs() > 3
+df['isOutlier'].value_counts()
+
+df=pd.read_csv("D:/sale_data.csv")
+fig, ax = plt.subplots(1, 1, figsize=(8, 5))
+df_=df[df["子行业名称"]=="羽绒服"]
+df_.boxplot(column="成交量",ax=ax)
+d=df_["成交量"]
+print (d.describe())
+df_['isOutlier'] = d > d.quantile(0.75)
+df_[df_['isOutlier']==True]
+
+df=pd.read_CSV("D:/hz_weather.CSV")
+df.duplicated()
+data.duplicated('最高气温')  # 按照列进行判断
+df.drop_duplicates('最高气温')  # 返回一个新的去重后的对象

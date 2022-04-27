@@ -1,0 +1,6 @@
+import pandas as pd
+df = pd.read_csv("D:/getlinks.csv")
+df.head()
+df.link.str.extract('(\d+)')
+df.link.str.extract('(.*)/(\d+)')
+df.link.str.extract('(?P<URL>.*)/(?P<ID>\d+)')

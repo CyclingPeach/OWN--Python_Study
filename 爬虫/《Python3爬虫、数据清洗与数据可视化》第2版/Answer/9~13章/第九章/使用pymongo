@@ -1,0 +1,30 @@
+import requests
+import pymongo
+
+client=pymongo.MongoClient('localhost',27017)
+#新建数据库
+taobao=client['taobao']
+#新建表
+search_result=taobao['search_result']
+
+#爬取某电商网站商品数据（可能无法采集，可用提供的数据集提前导入数据库做练习）
+url='https://s.m.taobao.com/search?q=%E8%BF%9E%E8%A1%A3%E8%A3%99&search=%E6%8F%90%E4%BA%A4&tab=all&sst=1&n=20&buying=buyitnow&m=api4h5&abtest=24&wlsort=24&page=1'
+strhtml=requests.get(url)
+result= strhtml.json()
+
+for item in result['listItem']:
+    json_data = {
+          'title':item['title'],
+          'price': float(item['price']),
+          'sold':int(item['sold']),
+          'location': item['location']
+    	}
+    #写入数据
+    search_result.insert(json_data)
+    #查询位置在“浙江 杭州”，并且价格大于100元的商品数据。
+    for item in search_result.find({"location": "浙江 杭州", "price": {'$gt':100}}):
+    print (item)
+    #将位置“浙江 杭州”改为“浙江”。
+    search_result.update({"location": "浙江 杭州"},{"$set":{"location": "浙江"}})
+    #删除销量小于1000件的商品数据。
+    search_result.remove({"sold": {'$lt':1000}})

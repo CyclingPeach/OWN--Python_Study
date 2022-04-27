@@ -1,0 +1,27 @@
+#脚本执行环境是Anaconda
+import pandas as pd
+# 从CSV中读取数据，还可以读取html、txt等格式的文件
+df= pd.read_csv("D:/taobao_data.csv") 
+df.to_csv("D:/taobao_price_data.csv",columns=['商品','价格'], index=False,header=True)
+rows = df[0:3]
+rows
+cols = df[['商品','价格']]
+cols.head()
+df.ix[0:3,['商品','价格']]
+df['销售额'] = df['价格'] * df['成交量']
+df.head()
+df[(df['价格']<100) & (df['成交量']>10000)]
+df1 = df.set_index("位置") # set_index 将某个字段作为 index
+df1 = df1.sort_index() 
+df1.head()
+# sortlevel(0)表示根据第一个索引"位置"排序
+df2 = df.set_index(["位置", "卖家"]).sortlevel(0) 
+df2.head()
+df_mean = df.drop(["商品","卖家"], axis=1).groupby("位置"). mean().sort_values("成交量", ascending=False)
+df_sum = df.drop(["商品","卖家"], axis=1).groupby("位置"). sum().sort_values("成交量", ascending=False)
+# drop （默认axis=0）是删掉行, axis=1 是删掉列
+# groupby 汇总
+# sort_values排序
+df_mean
+df.info()
+df.describe()

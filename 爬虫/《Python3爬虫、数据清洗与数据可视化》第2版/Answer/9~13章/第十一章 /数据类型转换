@@ -1,0 +1,14 @@
+import pandas as pd
+df_pop = pd.read_csv("D:/european_cities.csv")
+df_pop.head()
+type(df_pop.Population[0]) # 不是纯数值，是string型的
+df_pop["NumericPopulation"] = df_pop.Population.apply(lambda x: int(x. replace(",", "")))
+# lambda表示下面的内容是一个函数，对每一行用 apply 操作, 去掉population每个元素的
+# 逗号并转为integer
+# apply 很方便, 不用循环
+df_pop.head()
+df_pop["State"].values[:3]
+df_pop["State"] = df_pop["State"].apply(lambda x: x.strip())
+# 去掉 string 的前后的空格
+df_pop.head()
+df_pop.dtypes

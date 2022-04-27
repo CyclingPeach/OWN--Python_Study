@@ -1,0 +1,27 @@
+import pandas as pd
+df = pd.read_csv("D:/qunar_free_trip.csv")
+df.head()
+# 查看是否有缺失值
+df.info()
+# 查看是否有重复值
+df.duplicated().value_counts()
+# 移除重复值
+df = df.drop_duplicates()
+df.duplicated().value_counts()
+# 查看描述性统计信息
+df.describe()
+# 画出价格分布的直方图和箱形图
+%matplotlib inline
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+axes[0].hist(df["价格"],bins=20)
+df.boxplot(column="价格",ax=axes[1])
+fig.tight_layout()
+# 用均方差法找出价格异常值
+d=df["价格"]
+zscore = (d - d.mean())/d.std()
+df['isOutlier'] = zscore.abs() > 3.5
+print (df['isOutlier'].value_counts())
+df[df['isOutlier']==True]

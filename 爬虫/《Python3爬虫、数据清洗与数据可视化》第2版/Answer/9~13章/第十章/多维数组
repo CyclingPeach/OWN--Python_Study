@@ -1,0 +1,39 @@
+arr1 = np.arange(8)
+arr2 = arr.reshape(2, 4)
+arr1[0] = 1000
+print(arr1)
+print(arr2)
+#输出结果为：[1000   	1   	2   	3 	4  	5   	6  	7]
+#            [[1000  	1   	2   	3]
+#            [      	4   	5  	6   	7]] 
+arr3=arr.copy()
+arr1[0] = 1      
+print(arr3)
+print(arr1)
+print(arr2)
+#输出结果为：[1 1 2 3 4 5 6 7]
+#            [1 1 2 3 4 5 6 7]
+#            [[1, 1, 2, 3],
+#            [4, 5, 6, 7]])
+print(arr2[1, 2:3])  
+print(arr2[:, 2]) 
+print(arr2[1][2:3])  
+#输出结果为：
+# [6]      	返回第2行，第3列的值
+# [2 6]  	返回第三列的所有值
+# [6]       	返回第2行，第3列的值
+LIST=[[1,2,3],[4,5,6]]
+[i[2] for i in LIST]
+#输出结果为：[3, 6]。
+#如果只提供一个索引，那么将得到一个包含该行的维数少的数组，如下所示。
+print(arr2[0]) 
+print(arr2[1]) 
+#输出结果
+#[1 1 2 3]      返回第1行的所有值
+#[4 5 6 7]      返回第2行的所有值
+arr = arr2
+print('Data type              	:', arr.dtype)
+print('Total number of elements :', arr.size)
+print('Number of dimensions   	:', arr.ndim)
+print('Shape (dimensionality)  	:', arr.shape)
+print('Memory used (in bytes) 	:', arr.nbytes)
