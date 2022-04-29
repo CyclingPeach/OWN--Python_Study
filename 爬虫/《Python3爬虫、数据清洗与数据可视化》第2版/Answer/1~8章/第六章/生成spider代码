@@ -1,0 +1,2 @@
+cd stockstar
+scrapy genspider stock quote.stockstar.com
