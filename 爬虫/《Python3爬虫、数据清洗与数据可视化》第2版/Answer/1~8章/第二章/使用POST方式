@@ -1,7 +1,0 @@
-import requests
-url = ' http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule'
-Form_data= {'i': '我爱中国', 'from':'AUTO','to': 'AUTO','smartresult': 'dict', 'client':'fanyideskweb',
-                'salt':'1512399450582','sign':' 78181ebbdcb38de9b4a3f4cd1d 38816b', 'doctype':'json',
-                'version':'2.1','keyfrom':'fanyi.web',
-                'action':'FY_BY_CLICKBUTTION','typoResult':'false'}
-response = requests.post(url, data=Form_data)
